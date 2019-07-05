@@ -10,11 +10,11 @@ aggregate 2 csv file with same name to create a new csv file.
 
 `mvn clean install`
 
-2. run the jar file
+2. configure the config.properties and put the path in the csv1, csv2, and aggregated
+3. run the jar file
 
 `java -jar CsvAggregator-0.0.1-SNAPSHOT-jar-with-dependencies.jar`
 
-3. configure the config.properties and put the path in the csv1, csv2, and aggregated
 4. put the first csv file inside csv1 folder. 
 5. put the second csv file inside csv2 folder.*make sure the filename is the same*
 6. wait for 10s *timeout set to know when to aggregate the 2 file*
