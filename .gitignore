@@ -1,0 +1,10 @@
+target/
+csv1/
+csv2/
+aggregated/
+
+*eclipse*
+
+.project
+.classpath
+aggregator.log
