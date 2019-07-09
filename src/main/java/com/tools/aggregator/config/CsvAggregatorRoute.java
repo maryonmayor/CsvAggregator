@@ -4,6 +4,8 @@ import java.util.Properties;
 
 import org.apache.camel.builder.RouteBuilder;
 
+import com.tools.aggregator.proccessor.CSVSummationProcessor;
+
 public class CsvAggregatorRoute extends RouteBuilder {
 	
 	private Properties properties;
@@ -36,7 +38,17 @@ public class CsvAggregatorRoute extends RouteBuilder {
 		//.to("log:com.tools.aggregator?level=INFO")
 		.marshal()
 		.csv()
-		.to("file:"+properties.getProperty("aggregated"));
+		.to("file:"+properties.getProperty("aggregated"))
+		.to("direct:addSummation");
+		
+		from("direct:addSummation")
+		.unmarshal()
+		.csv()
+		.process(new CSVSummationProcessor())
+		.log("----summation----: ${header.CamelFileName}")
+		.marshal()
+		.csv()
+		.to("file:"+properties.getProperty("aggregated-with-summation"));
 
 	}
 
