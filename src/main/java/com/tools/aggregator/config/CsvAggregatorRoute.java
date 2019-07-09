@@ -52,7 +52,7 @@ public class CsvAggregatorRoute extends RouteBuilder {
 		.csv()
 		.to("file:"+properties.getProperty("aggregated-with-summation"));
 		
-		from("file:"+properties.getProperty("aggregated"))
+		from("file:"+properties.getProperty("aggregated")+"?noop=true")
 		.unmarshal()
 		.csv()
 		.process(new CSVCounterProcessor())
